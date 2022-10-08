@@ -40,7 +40,7 @@ function App() {
     if (name === "") return
     console.log(name)
     setTodos(prevTodos => {
-      return [...prevTodos, { id: uuidv4(), name: name, complete: false }]
+      return [...prevTodos, { id: uuidv4(), name: name, complete: false, dateAdded: new Date() }]
     })
     todoNameRef.current.value = null
   }
@@ -59,13 +59,18 @@ function App() {
     console.log(todos)
   }
 
+
   return (
     <>
       <div className="background">
 
         <div className="container">
           <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
+
+
           <input ref={todoNameRef} className="todoInput" type="text" placeholder="Enter New To-do" />
+
+
           <br></br>
           <button onClick={handleAddTodo}>Add Todo </button>
           <button onClick={handleClearTodo}>Clear Completed</button>
