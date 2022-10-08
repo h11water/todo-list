@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import TodoList from "./TodoList";
 import { v4 as uuidv4 } from "uuid"
 import "./style.css"
-//test1
 
 const LOCAL_STORAGE_KEY = "todoApp.todos"
 
@@ -30,7 +29,7 @@ function App() {
     setTodos(todos => {
       //copy the todos into a new object
       let newTodos = JSON.parse(JSON.stringify(todos))
-      let completedTodo = newTodos.find(todo => todo.id == id)
+      let completedTodo = newTodos.find(todo => todo.id === id)
       completedTodo.complete = !completedTodo.complete
       return newTodos
     })
@@ -62,13 +61,19 @@ function App() {
 
   return (
     <>
-      <div className="orange">
-        <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
-        <input ref={todoNameRef} type="text" />
-        <button onClick={handleAddTodo}>Add Todo </button>
-        <button onClick={handleClearTodo}>Clear Completed Todo</button>
-        <button onClick={logTodos}> log</button>
-        <div>{todos.length} left to do</div>
+      <div className="background">
+
+        <div className="container">
+          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
+          <input ref={todoNameRef} className="todoInput" type="text" placeholder="Enter New To-do" />
+          <br></br>
+          <button onClick={handleAddTodo}>Add Todo </button>
+          <button onClick={handleClearTodo}>Clear Completed</button>
+
+          <div>{todos.length} left to do</div>
+          <button onClick={logTodos}> log</button>
+        </div>
+
 
       </div>
 

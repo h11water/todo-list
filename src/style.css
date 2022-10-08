@@ -1,9 +1,44 @@
-.orange{
-	color: orange;
-	background: orange;
+html, body, #app, #root, #app>div {
+	height: 100%;
+	margin: 0px;
+}
+
+html *
+{
+   font-family: "Segoe UI" !important;
+}
+
+.background {
+	background: rgb(255, 255, 255);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(233, 203, 210, 1) 64%, rgba(235, 191, 144, 1) 100%);
 	width: 100%;
 	height: 100%;
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	align-content: center;
+}
+
+.container {
+	position: relative;
+	padding: 1em;
+	background-color: bisque;
+	border-radius: 0.75em;
+}
+
+.todoItem {
+	margin: .25em;
+	padding: .5em;
+	border-radius: .75em;
+	background: rgb(196, 125, 152);
+	background: linear-gradient(135deg, rgba(196, 125, 152, 1) 0%, rgba(148, 53, 129, 1) 6%, rgba(25, 73, 158, 1) 19%);
+	color: white;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.todoInput{
+	margin: .25em;
+	padding: .5em;
+	border-radius: .75em;
+	border-color: white;
+	border-width: 0;
 }
