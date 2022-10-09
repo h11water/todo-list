@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import TodoList from "./TodoList";
 import { v4 as uuidv4 } from "uuid"
 import "./style.css"
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LOCAL_STORAGE_KEY = "todoApp.todos"
 
@@ -63,8 +65,9 @@ function App() {
   return (
     <>
       <div className="background">
+        <h1>Todo List:</h1>
 
-        <div className="container">
+        <div className="Mycontainer">
           <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
 
 
@@ -72,8 +75,8 @@ function App() {
 
 
           <br></br>
-          <button onClick={handleAddTodo}>Add Todo </button>
-          <button onClick={handleClearTodo}>Clear Completed</button>
+          <Button onClick={handleAddTodo}>Add Todo </Button>
+          <Button onClick={handleClearTodo}>Clear Completed</Button>
 
           <div>{todos.length} left to do</div>
           <button onClick={logTodos}> log</button>

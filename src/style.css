@@ -6,6 +6,7 @@ html, body, #app, #root, #app>div {
 html *
 {
    font-family: "Segoe UI" !important;
+   margin-right: 0 !important;
 }
 
 .background {
@@ -16,23 +17,37 @@ html *
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 }
 
-.container {
+.Mycontainer {
 	position: relative;
 	padding: 1em;
 	background-color: bisque;
 	border-radius: 0.75em;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+
 }
 
 .todoItem {
 	margin: .25em;
 	padding: .5em;
 	border-radius: .75em;
+	background-color: dodgerblue;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	width: clamp(150px,250px,500px);
+	transition: 0.3s;
+	/*
 	background: rgb(196, 125, 152);
 	background: linear-gradient(135deg, rgba(196, 125, 152, 1) 0%, rgba(148, 53, 129, 1) 6%, rgba(25, 73, 158, 1) 19%);
 	color: white;
-	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	
+	*/
+}
+
+.todoItem:hover {
+	transform: scale(1.05);
 }
 
 .todoInput{
@@ -41,4 +56,18 @@ html *
 	border-radius: .75em;
 	border-color: white;
 	border-width: 0;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.tooltip{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	top: -10px;
+	right: 50%;
+	border: 2px;
+	border-radius: 0.25em;
+	background-color: rgba(0, 0, 0, 0.6);
 }
