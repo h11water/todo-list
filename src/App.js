@@ -68,6 +68,7 @@ function App() {
         <h1>Todo List:</h1>
 
         <div className="Mycontainer">
+          <div style={{textAlign:"right"}}>{todos.length} left to do</div>
           <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
 
 
@@ -78,7 +79,7 @@ function App() {
           <Button onClick={handleAddTodo}>Add Todo </Button>
           <Button onClick={handleClearTodo}>Clear Completed</Button>
 
-          <div>{todos.length} left to do</div>
+
           <button onClick={logTodos}> log</button>
         </div>
 
