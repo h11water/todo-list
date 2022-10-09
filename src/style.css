@@ -1,12 +1,12 @@
 html, body, #app, #root, #app>div {
 	height: 100%;
+	width: 100%;
 	margin: 0px;
 }
 
 html *
 {
    font-family: "Segoe UI" !important;
-   margin-right: 0 !important;
 }
 
 .background {
@@ -26,18 +26,34 @@ html *
 	background-color: bisque;
 	border-radius: 0.75em;
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	max-height: 80%;
+}
 
+.todoContainer{
+	display: flex;
+	align-items: center;
+	flex-direction: row;
 
 }
 
+.todoList{
+
+	max-height: 80%;
+	overflow-y: auto;
+}
+
 .todoItem {
+	display: block;
 	margin: .25em;
-	padding: .5em;
+	margin-left: 0.5em;
+	padding: .75em;
 	border-radius: .75em;
 	background-color: dodgerblue;
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 	width: clamp(150px,250px,500px);
 	transition: 0.3s;
+	color: white;
+	word-wrap: break-word;
 	/*
 	background: rgb(196, 125, 152);
 	background: linear-gradient(135deg, rgba(196, 125, 152, 1) 0%, rgba(148, 53, 129, 1) 6%, rgba(25, 73, 158, 1) 19%);
@@ -47,11 +63,12 @@ html *
 }
 
 .todoItem:hover {
-	transform: scale(1.05);
+	transform: scale(1.02);
 }
 
 .todoInput{
-	margin: .25em;
+	margin-top: .25em;
+	margin-bottom: .25em;
 	padding: .5em;
 	border-radius: .75em;
 	border-color: white;
