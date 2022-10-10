@@ -3,6 +3,7 @@ todo list made in Reactjs
 
 
 Usage
+
 Click on the checkbox and press Clear Completed to clear checked tasks.
 Write a task in the input section and click Add Todo to add to the list.
 
