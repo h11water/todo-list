@@ -4,9 +4,21 @@ html, body, #app, #root, #app>div {
 	margin: 0px;
 }
 
-html *
-{
-   font-family: "Segoe UI" !important;
+html * {
+	font-family: "Segoe UI" !important;
+}
+
+::-webkit-scrollbar {
+	width: .3em;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: lightslategrey;
+	border-radius: .25em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: grey;
 }
 
 .background {
@@ -29,16 +41,14 @@ html *
 	max-height: 80%;
 }
 
-.todoContainer{
+.todoContainer {
 	display: flex;
 	align-items: center;
 	flex-direction: row;
-
 }
 
-.todoList{
-
-	max-height: 80%;
+.todoList {
+	max-height: 70%;
 	overflow-y: auto;
 }
 
@@ -46,11 +56,11 @@ html *
 	display: block;
 	margin: .25em;
 	margin-left: 0.5em;
-	padding: .75em;
+	padding: .5em;
 	border-radius: .75em;
 	background-color: dodgerblue;
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-	width: clamp(150px,250px,500px);
+	width: clamp(150px, 250px, 500px);
 	transition: 0.3s;
 	color: white;
 	word-wrap: break-word;
@@ -66,8 +76,8 @@ html *
 	transform: scale(1.02);
 }
 
-.todoInput{
-	margin-top: .25em;
+.todoInput {
+	margin-top: .5em;
 	margin-bottom: .25em;
 	padding: .5em;
 	border-radius: .75em;
@@ -78,7 +88,7 @@ html *
 	box-sizing: border-box;
 }
 
-.tooltip{
+.tooltip {
 	position: relative;
 	width: 20px;
 	height: 20px;
@@ -87,4 +97,15 @@ html *
 	border: 2px;
 	border-radius: 0.25em;
 	background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+/*boostrap overrides*/
+
+.btn-primary {
+	margin: 0.25em;
+}
+
+.form-check-input {
+	margin-left: .25em;
 }
