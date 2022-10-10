@@ -61,26 +61,31 @@ function App() {
     console.log(todos)
   }
 
+  function handleInputEnter(e) {
+    if (e.key == "Enter") {
+      handleAddTodo()
+    }
+  }
 
   return (
     <>
       <div className="background">
-        <h1>Todo List:</h1>
+        <h1 style={{ textDecoration: "underline" }}>Todo List:</h1>
 
         <div className="Mycontainer">
-          <div style={{textAlign:"right"}}>{todos.length} left to do</div>
+          <div style={{ textAlign: "right", marginRight: ".5em" }}>{todos.length} left to do</div>
           <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
 
 
-          <input ref={todoNameRef} className="todoInput" type="text" placeholder="Enter New To-do" />
+          <input ref={todoNameRef} className="todoInput" type="text" placeholder="Enter New To-do" onKeyDown={(e) => handleInputEnter(e)} />
 
 
           <br></br>
-          <Button onClick={handleAddTodo}>Add Todo </Button>
-          <Button onClick={handleClearTodo}>Clear Completed</Button>
+          <Button className="btn-light" onClick={handleAddTodo}>Add Todo 📝</Button>
+          <Button className="btn-light" onClick={handleClearTodo}>Clear Completed ✔️</Button>
 
 
-          <button onClick={logTodos}> log</button>
+          {/*<button onClick={logTodos}> log</button>*/}
         </div>
 
 
