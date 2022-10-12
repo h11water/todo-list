@@ -62,18 +62,42 @@ function App() {
   }
 
   function handleInputEnter(e) {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       handleAddTodo()
     }
+  }
+
+  function switchCompleteAndIncompleteTab(){
+    let completedTab = document.getElementById("completedContainer")
+    completedTab.classList.toggle("slide-left")  
+    let incompletedTab = document.getElementById("incompleteContainer")
+    incompletedTab.classList.toggle("slide-right")  
+    let rs = getComputedStyle(document.querySelector(':root'))
+    
+    //* 1000 to get milliseconds
+    let tabSwitchTime = rs.getPropertyValue('--tabSwitchTime').replace("s","")*1000
+
+    //switch the tabs z index
+    setTimeout(()=>{
+      [completedTab.style.zIndex,incompletedTab.style.zIndex] = [incompletedTab.style.zIndex,completedTab.style.zIndex]
+    },tabSwitchTime)
+
+    //make the tabs move back to their original positions
+    setTimeout(() => {
+      completedTab.classList.toggle("slide-left") 
+      incompletedTab.classList.toggle("slide-right") 
+    }, tabSwitchTime+80);
+
   }
 
   return (
     <>
       <div className="background">
-        <h1 style={{ textDecoration: "underline" }}>Todo List:</h1>
 
-        <div className="Mycontainer">
-          <div style={{ textAlign: "right", marginRight: ".5em" }}>{todos.length} left to do</div>
+        <h1 style={{ textDecoration: "underline"}}>Todo List:</h1>
+
+        <div id="incompleteContainer" className="Mycontainer" style={{zIndex:2}}>
+          <div style={{ textAlign: "right", marginRight: ".5em",color:"white" }}>{todos.filter(t=>{if(!t.complete) return t}).length} left to do</div>
           <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
 
 
@@ -83,9 +107,14 @@ function App() {
           <br></br>
           <Button className="btn-light" onClick={handleAddTodo}>Add Todo 📝</Button>
           <Button className="btn-light" onClick={handleClearTodo}>Clear Completed ✔️</Button>
-
+          <br></br>
+          <Button onClick={switchCompleteAndIncompleteTab}></Button>
 
           {/*<button onClick={logTodos}> log</button>*/}
+        </div>
+
+        <div id="completedContainer" className="Mycontainer" style={{ backgroundColor: "greenyellow", position: "absolute", zIndex: 1 }}>
+          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
         </div>
 
 

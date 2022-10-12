@@ -2,10 +2,18 @@ html, body, #app, #root, #app>div {
 	height: 100%;
 	width: 100%;
 	margin: 0px;
+	overflow-y: hidden;
+	overflow-x: hidden;
 }
 
 html * {
 	font-family: "Segoe UI" !important;
+}
+
+:root {
+	--blue: #1e90ff;
+	--white: #ffffff;
+	--tabSwitchTime: .25s
 }
 
 ::-webkit-scrollbar {
@@ -22,6 +30,7 @@ html * {
 }
 
 .background {
+	z-index: -999;
 	background: rgb(255, 255, 255);
 	background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(233, 203, 210, 1) 64%, rgba(235, 191, 144, 1) 100%);
 	width: 100%;
@@ -30,6 +39,8 @@ html * {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	overflow-y: hidden;
+	overflow-x: hidden;
 }
 
 .Mycontainer {
@@ -39,6 +50,9 @@ html * {
 	border-radius: 0.75em;
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 	max-height: 80%;
+	transition: .5s;
+	background-color: rgb(80 94 134 / 65%);
+	backdrop-filter: blur(12px);
 }
 
 .todoContainer {
@@ -99,6 +113,19 @@ html * {
 	background-color: rgba(0, 0, 0, 0.6);
 }
 
+/*animations*/
+
+.slide-left {
+	transform: translateX(-51%);
+	transition: var(--tabSwitchTime);
+}
+
+.slide-right {
+	transform: translateX(51%);
+	transition: var(--tabSwitchTime);
+}
+
+/*end of animations*/
 
 /*boostrap overrides*/
 
@@ -109,3 +136,5 @@ html * {
 .form-check-input {
 	margin-left: .25em;
 }
+
+/*end of bootstrap overrides*/

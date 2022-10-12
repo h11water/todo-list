@@ -9,12 +9,13 @@ function Todo({ todo, handleMarkComplete }) {
 	}
 
 	function hoverDate() {
-		console.log(new Date(todo.dateAdded).toDateString())
+		//console.log(new Date(todo.dateAdded).toDateString())
 	}
 
 	return (
 		<>
-			<ReactTooltip place="right" type="dark" effect="solid" />
+			{/*
+			<ReactTooltip place="right" type="dark" effect="solid" />*/}
 			<div className="todoContainer">
 				<input type="checkbox" className="form-check-input" onChange={checkBoxOnChange} checked={todo.complete} />
 
