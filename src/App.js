@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LOCAL_STORAGE_KEY = "todoApp.todos"
 
-//https://www.youtube.com/watch?v=hQAHSlTtcmY
 function App() {
   //const [todos, setTodos] = useState([{name:"todo1", id:1,complete:false}, {name:"todo2", id:2,complete:true}])
   const [todos, setTodos] = useState([])
@@ -19,7 +18,6 @@ function App() {
     if (storedTodos.length > 0) {
       setTodos(storedTodos)
     }
-
   }, [])
 
   useEffect(() => {
@@ -39,8 +37,10 @@ function App() {
 
   function handleAddTodo(e) {
     const name = todoNameRef.current.value
+    //if the todo contains nothing, dont add it 
     if (name === "") return
     console.log(name)
+    //append the todo
     setTodos(prevTodos => {
       return [...prevTodos, { id: uuidv4(), name: name, complete: false, dateAdded: new Date() }]
     })
@@ -67,26 +67,28 @@ function App() {
     }
   }
 
-  function switchCompleteAndIncompleteTab(){
+  function switchCompleteAndIncompleteTab() {
+    //switch the completed and incomplete tabs
+
     let completedTab = document.getElementById("completedContainer")
-    completedTab.classList.toggle("slide-left")  
+    completedTab.classList.toggle("slide-left")
     let incompletedTab = document.getElementById("incompleteContainer")
-    incompletedTab.classList.toggle("slide-right")  
+    incompletedTab.classList.toggle("slide-right")
     let rs = getComputedStyle(document.querySelector(':root'))
-    
+
     //* 1000 to get milliseconds
-    let tabSwitchTime = rs.getPropertyValue('--tabSwitchTime').replace("s","")*1000
+    let tabSwitchTime = rs.getPropertyValue('--tabSwitchTime').replace("s", "") * 1000
 
     //switch the tabs z index
-    setTimeout(()=>{
-      [completedTab.style.zIndex,incompletedTab.style.zIndex] = [incompletedTab.style.zIndex,completedTab.style.zIndex]
-    },tabSwitchTime)
+    setTimeout(() => {
+      [completedTab.style.zIndex, incompletedTab.style.zIndex] = [incompletedTab.style.zIndex, completedTab.style.zIndex]
+    }, tabSwitchTime)
 
     //make the tabs move back to their original positions
     setTimeout(() => {
-      completedTab.classList.toggle("slide-left") 
-      incompletedTab.classList.toggle("slide-right") 
-    }, tabSwitchTime+80);
+      completedTab.classList.toggle("slide-left")
+      incompletedTab.classList.toggle("slide-right")
+    }, tabSwitchTime + 80);
 
   }
 
@@ -94,10 +96,10 @@ function App() {
     <>
       <div className="background">
 
-        <h1 style={{ textDecoration: "underline"}}>Todo List:</h1>
+        <h1 style={{ textDecoration: "underline" }}>Todo List:</h1>
 
-        <div id="incompleteContainer" className="Mycontainer" style={{zIndex:2}}>
-          <div style={{ textAlign: "right", marginRight: ".5em",color:"white" }}>{todos.filter(t=>{if(!t.complete) return t}).length} left to do</div>
+        <div id="incompleteContainer" className="Mycontainer" style={{ zIndex: 2 }}>
+          <div style={{ textAlign: "right", marginRight: ".5em", color: "white" }}>{todos.filter(t => { if (!t.complete) return t }).length} left to do</div>
           <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
 
 
