@@ -1,17 +1,29 @@
 import React from 'react';
+import CompletedTodo from './CompletedTodo';
 import Todo from './Todo';
 
-function TodoList({ todos, handleMarkComplete }) {
-
-
+function TodoList({ todos, handleMarkComplete, listType }) {
 	return (
-		<div className="todoList">
-			{
-			todos.map(todo => {
-				return <Todo key={todo.id} todo={todo} handleMarkComplete={handleMarkComplete} />
-			})
-			}
-		</div>
+		listType === "incomplete" ?
+			<div className="todoList">
+				{
+					todos.length > 0 ?
+						todos.map(todo => {
+							return <Todo key={todo.id} todo={todo} handleMarkComplete={handleMarkComplete} />
+						})
+					:<div>Nothing to do.</div>
+				}
+			</div>
+			:
+			<div>
+				{
+					todos.length > 0 ?
+						todos.map(todo => {
+							return <CompletedTodo key={todo.id} todo={todo} handleMarkComplete={handleMarkComplete}/>
+						})
+					:<div>Nothing completed.</div>
+				}
+			</div>
 
 	);
 }
