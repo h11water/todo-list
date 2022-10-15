@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid"
 import "./style.css"
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CompletedTodo from "./CompletedTodo";
 
 const LOCAL_STORAGE_KEY = "todoApp.todos"
 
@@ -95,12 +96,12 @@ function App() {
   return (
     <>
       <div className="background">
-
+        
         <h1 style={{ textDecoration: "underline" }}>Todo List:</h1>
 
         <div id="incompleteContainer" className="Mycontainer" style={{ zIndex: 2 }}>
-          <div style={{ textAlign: "right", marginRight: ".5em", color: "white" }}>{todos.filter(t => { if (!t.complete) return t }).length} left to do</div>
-          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
+          <div style={{ textAlign: "right", marginRight: ".5em", color: "white" }}>{todos.filter(t => !t.complete).length} left to do</div>
+          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} listType={"incomplete"}/>
 
 
           <input ref={todoNameRef} className="todoInput" type="text" placeholder="Enter New To-do" onKeyDown={(e) => handleInputEnter(e)} />
@@ -116,7 +117,7 @@ function App() {
         </div>
 
         <div id="completedContainer" className="Mycontainer" style={{ backgroundColor: "greenyellow", position: "absolute", zIndex: 1 }}>
-          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} />
+          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} listType={"complete"} />
         </div>
 
 
