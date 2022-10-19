@@ -7,24 +7,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CompletedTodo from "./CompletedTodo";
 
 const LOCAL_STORAGE_KEY = "todoApp.todos"
+const LOCAL_STORAGE_KEY_COMPLETED = "todoApp.complete"
 
 function App() {
   //const [todos, setTodos] = useState([{name:"todo1", id:1,complete:false}, {name:"todo2", id:2,complete:true}])
   const [todos, setTodos] = useState([])
+  const [completedTodos, setCompletedTodos] = useState([])
   const todoNameRef = useRef()
 
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-    if (storedTodos.length > 0) {
+    //console.log(typeof(storedTodos), storedTodos)
+    if (
+      storedTodos && storedTodos.length > 0) {
       setTodos(storedTodos)
     }
+    const storedCompletedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_COMPLETED))
+    if (storedCompletedTodos && storedCompletedTodos.length > 0) {
+      setCompletedTodos(storedCompletedTodos)
+    }
+
   }, [])
 
   useEffect(() => {
-    console.log("saved to local", todos)
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
   }, [todos])
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY_COMPLETED, JSON.stringify(completedTodos))
+  }, [completedTodos])
 
   function handleMarkComplete(id) {
     setTodos(todos => {
@@ -50,6 +62,8 @@ function App() {
 
   function handleClearTodo(e) {
     //console.log(todos.filter(p => {return p.complete === false}))
+
+    console.log(todos.filter(t => { return t.complete === true }))
 
     setTodos(prevTodos => {
       return prevTodos.filter(p => { return p.complete === false })
@@ -96,12 +110,12 @@ function App() {
   return (
     <>
       <div className="background">
-        
+
         <h1 style={{ textDecoration: "underline" }}>Todo List:</h1>
 
         <div id="incompleteContainer" className="Mycontainer" style={{ zIndex: 2 }}>
           <div style={{ textAlign: "right", marginRight: ".5em", color: "white" }}>{todos.filter(t => !t.complete).length} left to do</div>
-          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} listType={"incomplete"}/>
+          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} listType={"incomplete"} />
 
 
           <input ref={todoNameRef} className="todoInput" type="text" placeholder="Enter New To-do" onKeyDown={(e) => handleInputEnter(e)} />
@@ -116,8 +130,8 @@ function App() {
           {/*<button onClick={logTodos}> log</button>*/}
         </div>
 
-        <div id="completedContainer" className="Mycontainer" style={{ backgroundColor: "greenyellow", position: "absolute", zIndex: 1 }}>
-          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} listType={"complete"} />
+        <div id="completedContainer" className="Mycontainer" style={{ backgroundColor: "greenyellow", position: "absolute", zIndex: 1, height: "500px" }}>
+          <TodoList todos={completedTodos} handleMarkComplete={handleMarkComplete} listType={"complete"} />
         </div>
 
 
