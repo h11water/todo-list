@@ -15,7 +15,7 @@ function TodoList({ todos, handleMarkComplete, listType }) {
 				}
 			</div>
 			:
-			<div>
+			<div className="todoList">
 				{
 					todos.length > 0 ?
 						todos.map(todo => {

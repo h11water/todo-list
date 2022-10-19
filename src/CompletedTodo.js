@@ -4,7 +4,7 @@ function CompletedTodo({todo}) {
 	return (
 		<>
 			<div className="todoItem" style={{backgroundColor:'black'}}>
-				{JSON.stringify(todo)}
+				{todo.name}
 			</div>
 		</>
 
