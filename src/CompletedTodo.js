@@ -1,11 +1,17 @@
 import React from 'react';
 import "./style.css"
-function CompletedTodo({todo}) {
+function CompletedTodo({ todo }) {
 	return (
 		<>
-			<div className="todoItem" style={{backgroundColor:'black'}}>
-				{todo.name}
+			<div style={{display:"flex"}}>
+				<div className="todoItem" style={{ backgroundColor: 'black' ,flex:"6"}}>
+					{todo.name}
+				</div>
+				<div className="todoItem" style={{ backgroundColor: 'black',flex:"1", marginLeft:"1px"}}>
+					{String(Intl.DateTimeFormat("en").format(new Date(todo.dateCompleted)))}
+				</div>
 			</div>
+
 		</>
 
 	);

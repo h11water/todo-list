@@ -65,16 +65,24 @@ function App() {
 
     console.log(todos.filter(t => { return t.complete === true }))
 
+
+    //add the completed todo the the completed storage
+    //also add the date completed to the todo
+    setCompletedTodos(prevCompleted =>{
+      let completedTs = todos.filter(t=>{return t.complete === true})
+      completedTs.map(t=>{t.dateCompleted = new Date(); return t})
+      console.log(completedTs)
+      return [...prevCompleted, ...completedTs]
+    })
+
     setTodos(prevTodos => {
+
       return prevTodos.filter(p => { return p.complete === false })
     })
 
     //setTodos([])
   }
 
-  function logTodos() {
-    console.log(todos)
-  }
 
   function handleInputEnter(e) {
     if (e.key === "Enter") {
