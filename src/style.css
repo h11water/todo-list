@@ -43,6 +43,10 @@ html * {
 	overflow-x: hidden;
 }
 
+.todoTitle{
+	transition: .5s;
+}
+
 .Mycontainer {
 	position: relative;
 	padding: 1em;
@@ -122,6 +126,11 @@ html * {
 
 .slide-right {
 	transform: translateX(51%);
+	transition: var(--tabSwitchTime);
+}
+
+.fade-out{
+	color: transparent;
 	transition: var(--tabSwitchTime);
 }
 

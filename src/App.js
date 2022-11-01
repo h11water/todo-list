@@ -68,9 +68,9 @@ function App() {
 
     //add the completed todo the the completed storage
     //also add the date completed to the todo
-    setCompletedTodos(prevCompleted =>{
-      let completedTs = todos.filter(t=>{return t.complete === true})
-      completedTs.map(t=>{t.dateCompleted = new Date(); return t})
+    setCompletedTodos(prevCompleted => {
+      let completedTs = todos.filter(t => { return t.complete === true })
+      completedTs.map(t => { t.dateCompleted = new Date(); return t })
       console.log(completedTs)
       return [...prevCompleted, ...completedTs]
     })
@@ -98,11 +98,11 @@ function App() {
     let incompletedTab = document.getElementById("incompleteContainer")
     incompletedTab.classList.toggle("slide-right")
     let rs = getComputedStyle(document.querySelector(':root'))
-
     //* 1000 to get milliseconds
     let tabSwitchTime = rs.getPropertyValue('--tabSwitchTime').replace("s", "") * 1000
 
-    //switch the tabs z index
+    //switch the tabs z index after the animation has played
+    switchTitle()
     setTimeout(() => {
       [completedTab.style.zIndex, incompletedTab.style.zIndex] = [incompletedTab.style.zIndex, completedTab.style.zIndex]
     }, tabSwitchTime)
@@ -113,13 +113,34 @@ function App() {
       incompletedTab.classList.toggle("slide-right")
     }, tabSwitchTime + 80);
 
+
+  }
+
+  function switchTitle() {
+    let completedTab = document.getElementById("completedContainer")
+    let incompletedTab = document.getElementById("incompleteContainer")
+    let rs = getComputedStyle(document.querySelector(':root'))
+    //* 1000 to get milliseconds
+    let tabSwitchTime = rs.getPropertyValue('--tabSwitchTime').replace("s", "") * 1000
+
+    let title = document.getElementById("todoTitle")
+    title.classList.toggle("fade-out")
+    setTimeout(() => {
+      if (completedTab.style.zIndex > incompletedTab.style.zIndex) {
+        title.innerHTML = "Todo List";
+      }else title.innerHTML = "Completed List";
+
+      title.classList.toggle("fade-out")
+
+    }, tabSwitchTime)
+
   }
 
   return (
     <>
       <div className="background">
 
-        <h1 style={{ textDecoration: "underline" }}>Todo List:</h1>
+        <h1 style={{ textDecoration: "underline" }} id="todoTitle" className="todoTitle">Todo List:</h1>
 
         <div id="incompleteContainer" className="Mycontainer" style={{ zIndex: 2 }}>
           <div style={{ textAlign: "right", marginRight: ".5em", color: "white" }}>{todos.filter(t => !t.complete).length} left to do</div>
@@ -133,12 +154,12 @@ function App() {
           <Button className="btn-light" onClick={handleAddTodo}>Add Todo 📝</Button>
           <Button className="btn-light" onClick={handleClearTodo}>Clear Completed ✔️</Button>
           <br></br>
-          <Button onClick={switchCompleteAndIncompleteTab}></Button>
+          <Button onClick={switchCompleteAndIncompleteTab}>Show Completed/Incomplete</Button>
 
           {/*<button onClick={logTodos}> log</button>*/}
         </div>
 
-        <div id="completedContainer" className="Mycontainer" style={{ backgroundColor: "greenyellow", position: "absolute", zIndex: 1, height: "500px" }}>
+        <div id="completedContainer" className="Mycontainer" style={{ backgroundColor: "greenyellow", position: "absolute", zIndex: 1, height: "500px", maxWidth: "305px" }}>
           <TodoList todos={completedTodos} handleMarkComplete={handleMarkComplete} listType={"complete"} />
         </div>
 
