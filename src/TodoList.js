@@ -5,7 +5,7 @@ import Todo from './Todo';
 function TodoList({ todos, handleMarkComplete, listType }) {
 	return (
 		listType === "incomplete" ?
-			<div className="todoList">
+			<div className="todoList" id="completedTodoList" >
 				{
 					todos.length > 0 ?
 						todos.map(todo => {

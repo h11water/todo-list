@@ -4,7 +4,8 @@ import { v4 as uuidv4 } from "uuid"
 import "./style.css"
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CompletedTodo from "./CompletedTodo";
+import model from "./components/Model";
+import Model from "./components/Model";
 
 const LOCAL_STORAGE_KEY = "todoApp.todos"
 const LOCAL_STORAGE_KEY_COMPLETED = "todoApp.complete"
@@ -58,6 +59,16 @@ function App() {
       return [...prevTodos, { id: uuidv4(), name: name, complete: false, dateAdded: new Date() }]
     })
     todoNameRef.current.value = null
+    scrollToBottom()
+  }
+
+  function scrollToBottom(){
+    //add a delay before scrolling to the item because the todolist will not immedietly have the newly added item
+    setTimeout(() => {
+      let todoList = document.getElementById("completedTodoList")
+      todoList.lastElementChild.scrollIntoView({ behavior: 'smooth' });
+    }, 10);
+
   }
 
   function handleClearTodo(e) {
@@ -139,6 +150,7 @@ function App() {
   return (
     <>
       <div className="background">
+        <Model></Model>
 
         <h1 style={{ textDecoration: "underline" }} id="todoTitle" className="todoTitle">Todo List:</h1>
 
