@@ -62,7 +62,7 @@ function App() {
     scrollToBottom()
   }
 
-  function scrollToBottom(){
+  function scrollToBottom() {
     //add a delay before scrolling to the item because the todolist will not immedietly have the newly added item
     setTimeout(() => {
       let todoList = document.getElementById("completedTodoList")
@@ -139,7 +139,7 @@ function App() {
     setTimeout(() => {
       if (completedTab.style.zIndex > incompletedTab.style.zIndex) {
         title.innerHTML = "Todo List";
-      }else title.innerHTML = "Completed List";
+      } else title.innerHTML = "Completed List";
 
       title.classList.toggle("fade-out")
 
@@ -150,29 +150,35 @@ function App() {
   return (
     <>
       <div className="background">
-        <Model></Model>
+        {/* <Model></Model>*/}
+
 
         <h1 style={{ textDecoration: "underline" }} id="todoTitle" className="todoTitle">Todo List:</h1>
 
-        <div id="incompleteContainer" className="Mycontainer" style={{ zIndex: 2 }}>
-          <div style={{ textAlign: "right", marginRight: ".5em", color: "white" }}>{todos.filter(t => !t.complete).length} left to do</div>
-          <TodoList todos={todos} handleMarkComplete={handleMarkComplete} listType={"incomplete"} />
+        <div className="gridContainer">
+
+          <div id="incompleteContainer" className="Mycontainer gridTodoElement" style={{ zIndex: 2 }}>
+            <div style={{ textAlign: "right", marginRight: ".5em", color: "white" }}>{todos.filter(t => !t.complete).length} left to do</div>
+            <TodoList todos={todos} handleMarkComplete={handleMarkComplete} listType={"incomplete"} />
 
 
-          <input ref={todoNameRef} className="todoInput" type="text" placeholder="Enter New To-do" onKeyDown={(e) => handleInputEnter(e)} />
+            <input ref={todoNameRef} className="todoInput" type="text" placeholder="Enter New To-do" onKeyDown={(e) => handleInputEnter(e)} />
 
 
-          <br></br>
-          <Button className="btn-light" onClick={handleAddTodo}>Add Todo 📝</Button>
-          <Button className="btn-light" onClick={handleClearTodo}>Clear Completed ✔️</Button>
-          <br></br>
-          <Button onClick={switchCompleteAndIncompleteTab}>Show Completed/Incomplete</Button>
+            <br></br>
+            <Button className="btn-light" onClick={handleAddTodo}>Add Todo 📝</Button>
+            <Button className="btn-light" onClick={handleClearTodo}>Clear Completed ✔️</Button>
+            <br></br>
+            <Button onClick={switchCompleteAndIncompleteTab}>Show Completed/Incomplete</Button>
 
-          {/*<button onClick={logTodos}> log</button>*/}
-        </div>
+            {/*<button onClick={logTodos}> log</button>*/}
+          </div>
 
-        <div id="completedContainer" className="Mycontainer" style={{ backgroundColor: "greenyellow", position: "absolute", zIndex: 1, height: "500px", maxWidth: "305px" }}>
-          <TodoList todos={completedTodos} handleMarkComplete={handleMarkComplete} listType={"complete"} />
+          <div id="completedContainer" className="Mycontainer gridTodoElement" style={{ backgroundColor: "greenyellow", zIndex: 1, maxHeight: "500px", maxWidth: "305px" }}>
+            <TodoList todos={completedTodos} handleMarkComplete={handleMarkComplete} listType={"complete"} />
+          </div>
+
+
         </div>
 
 
