@@ -151,8 +151,9 @@ function App() {
     <>
       <div className="background">
         {/* <Model></Model>*/}
+      </div>
 
-
+      <div className="main">
         <h1 style={{ textDecoration: "underline" }} id="todoTitle" className="todoTitle">Todo List:</h1>
 
         <div className="gridContainer">
@@ -180,10 +181,7 @@ function App() {
 
 
         </div>
-
-
       </div>
-
 
     </>
   )
