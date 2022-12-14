@@ -16,7 +16,7 @@ function Todo({ todo, handleMarkComplete }) {
 		<>
 			{/*
 			<ReactTooltip place="right" type="dark" effect="solid" />*/}
-			<div className="todoContainer">
+			<div className="todoContainer" uuid = {todo.id}>
 				<input type="checkbox" className="form-check-input" onChange={checkBoxOnChange} checked={todo.complete} />
 
 				<label className="todoItem" onMouseEnter={hoverDate} data-delay-show='30' data-tip={new Date(todo.dateAdded).toDateString()}

@@ -195,7 +195,7 @@ html * {
 
 @keyframes squashy {
 	from {
-		height: 100px;
+		height: 40px;
 	}
 
 	to {

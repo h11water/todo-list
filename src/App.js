@@ -71,12 +71,42 @@ function App() {
 
   }
 
-  function handleClearTodo(e) {
+  function playClearAnimation() {
+    //for each todo element, play the clear animation
+    //by adding the fade-out and squash class
+    let list = document.getElementById("completedTodoList")
+    let completedUuids = todos.filter(t => { return t.complete === true })
+    completedUuids = completedUuids.map(t => { return t.id })
+
+    console.log(completedUuids)
+    for (let i = 0; i < list.children.length; i++) {
+      console.log(list.children[i].getAttribute("uuid"))
+      if (completedUuids.includes(list.children[i].getAttribute("uuid"))) {
+        list.children[i].classList += " squash-away fade-out"
+      }
+    }
+
+
+
+    return
+  }
+
+
+
+  async function handleClearTodo(e) {
+    function delay(milliseconds) {
+      return new Promise(resolve => {
+        setTimeout(resolve, milliseconds);
+      });
+    }
     //console.log(todos.filter(p => {return p.complete === false}))
 
     console.log(todos.filter(t => { return t.complete === true }))
 
+    playClearAnimation()
 
+    //wait 0.5 seconds becasue that is how long the squash-away animation plays
+    await delay(500)
     //add the completed todo the the completed storage
     //also add the date completed to the todo
     setCompletedTodos(prevCompleted => {
